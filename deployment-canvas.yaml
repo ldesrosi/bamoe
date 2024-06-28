@@ -1,0 +1,46 @@
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: bamoe-canvas
+    namespace: bamoe
+    labels:
+      app: bamoe-canvas
+  spec:
+    ports:
+      - port: 8080
+        protocol: TCP
+        targetPort: 8080
+    type: NodePort
+    selector:
+      app: bamoe-canvas
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bamoe-canvas
+  namespace: bamoe
+  labels:
+    app:  bamoe-canvas
+spec:
+  selector:
+    matchLabels:
+      app: bamoe-canvas
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bamoe-canvas
+    spec:
+      containers:
+        - image: quay.io/bamoe/canvas:9.0.1 
+          imagePullPolicy: Always
+          name: bamoe-canvas
+          env:
+            - name: KIE_SANDBOX_EXTENDED_SERVICES_URL
+              value: http://bamoe-es.bamoe.svc.cluster.local:8080
+            - name: KIE_SANDBOX_GIT_CORS_PROXY_URL
+              value: http://bamoe-git.bamoe.svc.cluster.local:8080
+          ports:
+            - containerPort: 8080

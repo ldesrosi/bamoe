@@ -1,0 +1,41 @@
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: bamoe-es
+    namespace: bamoe
+    labels:
+      app: bamoe-es
+  spec:
+    ports:
+      - port: 21345
+        protocol: TCP
+        targetPort: 21345
+    type: ClusterIP
+    selector:
+      app: bamoe-es
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bamoe-es
+  namespace: bamoe
+  labels:
+    app:  bamoe-es
+spec:
+  selector:
+    matchLabels:
+      app: bamoe-es
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bamoe-es
+    spec:
+      containers:
+        - image: quay.io/bamoe/extended-services:9.0.1 
+          imagePullPolicy: Always
+          name: bamoe-es
+          ports:
+            - containerPort: 21345

@@ -1,0 +1,41 @@
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: bamoe-git
+    namespace: bamoe
+    labels:
+      app: bamoe-git
+  spec:
+    ports:
+      - port: 8080
+        protocol: TCP
+        targetPort: 8080
+    type: ClusterIP
+    selector:
+      app: bamoe-git
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bamoe-git
+  namespace: bamoe
+  labels:
+    app:  bamoe-git
+spec:
+  selector:
+    matchLabels:
+      app: bamoe-git
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bamoe-git
+    spec:
+      containers:
+        - image: quay.io/bamoe/git-cors-proxy:9.0.1
+          imagePullPolicy: Always
+          name: bamoe-git
+          ports:
+            - containerPort: 8080
