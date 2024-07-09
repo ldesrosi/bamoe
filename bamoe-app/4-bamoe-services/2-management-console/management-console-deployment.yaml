@@ -27,7 +27,7 @@ spec:
             - name: QUARKUS_HTTP_CORS_ORIGINS
               value: /.*/
             - name: RUNTIME_TOOLS_MANAGEMENT_CONSOLE_DATA_INDEX_ENDPOINT
-              value: http://data-index.bamoe-app.svc.cluster.local:8080/graphql
+              value: http://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql
             - name: RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_ENV_MODE
               value: DEV
           image: quay.io/bamoe/management-console:9.1.0-ibm-0001
