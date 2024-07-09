@@ -1,0 +1,16 @@
+apiVersion: v2
+appVersion: 9.1.0-ibm-0001
+dependencies:
+- name: cors_proxy
+  repository: ""
+  version: 9.1.0-ibm-0001
+- name: extended_services
+  repository: ""
+  version: 9.1.0-ibm-0001
+- name: kie_sandbox
+  repository: ""
+  version: 9.1.0-ibm-0001
+description: A Helm chart to deploy KIE Sandbox and related services on Kubernetes
+name: kie-sandbox-helm-chart
+type: application
+version: 9.1.0-ibm-0001

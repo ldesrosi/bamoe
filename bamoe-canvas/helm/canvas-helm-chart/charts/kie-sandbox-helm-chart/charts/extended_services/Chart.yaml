@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 9.1.0-ibm-0001
+description: A Helm chart to deploy Extended Services on Kubernetes
+name: extended_services
+type: application
+version: 9.1.0-ibm-0001

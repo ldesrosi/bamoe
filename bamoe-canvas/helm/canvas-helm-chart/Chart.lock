@@ -1,0 +1,6 @@
+dependencies:
+- name: kie-sandbox-helm-chart
+  repository: ""
+  version: 9.1.0-ibm-0001
+digest: sha256:ba9ecfbc2f374c8a687e166bf912424a8238ccb319132c92905e4f48eacbd88e
+generated: "2024-06-06T20:59:54.838304289Z"

@@ -1,0 +1,23 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: task-console-ingress
+  namespace: bamoe-app
+  labels:
+    app.kubernetes.io/component: task-console
+    app.kubernetes.io/instance: task-console
+    app.kubernetes.io/name: task-console
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+spec:
+  ingressClassName: public-iks-k8s-nginx
+  rules:
+    - host: task-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: task-console
+                port:
+                  name: http

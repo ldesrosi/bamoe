@@ -1,0 +1,12 @@
+dependencies:
+- name: cors_proxy
+  repository: ""
+  version: 9.1.0-ibm-0001
+- name: extended_services
+  repository: ""
+  version: 9.1.0-ibm-0001
+- name: kie_sandbox
+  repository: ""
+  version: 9.1.0-ibm-0001
+digest: sha256:83f8afb1440fc8420f810f6cfe78315779681c64825237f03a0abd576404afe2
+generated: "2024-06-06T20:37:59.080607596Z"

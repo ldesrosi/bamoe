@@ -11,7 +11,7 @@
       - port: 8080
         protocol: TCP
         targetPort: 8080
-    type: NodePort
+    type: LoadBalancer
     selector:
       app: bamoe-canvas
 ---
@@ -34,13 +34,13 @@ spec:
         app: bamoe-canvas
     spec:
       containers:
-        - image: quay.io/bamoe/canvas:9.0.1 
+        - image: quay.io/bamoe/canvas:9.1.0-ibm-0001
           imagePullPolicy: Always
           name: bamoe-canvas
           env:
             - name: KIE_SANDBOX_EXTENDED_SERVICES_URL
-              value: http://bamoe-es.bamoe.svc.cluster.local:8080
+              value: http://169.50.115.195:21345 
             - name: KIE_SANDBOX_GIT_CORS_PROXY_URL
-              value: http://bamoe-git.bamoe.svc.cluster.local:8080
+              value: http://169.50.115.196:8080
           ports:
             - containerPort: 8080

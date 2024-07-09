@@ -11,7 +11,7 @@
       - port: 21345
         protocol: TCP
         targetPort: 21345
-    type: ClusterIP
+    type: LoadBalancer
     selector:
       app: bamoe-es
 ---
@@ -34,7 +34,7 @@ spec:
         app: bamoe-es
     spec:
       containers:
-        - image: quay.io/bamoe/extended-services:9.0.1 
+        - image: quay.io/bamoe/extended-services:9.1.0-ibm-0001
           imagePullPolicy: Always
           name: bamoe-es
           ports:
