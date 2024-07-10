@@ -29,11 +29,11 @@ spec:
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: kafka.bamoe-app.svc.cluster.local:9092
             - name: KOGITO_DATAINDEX_HTTP_URL
-              value: http://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql
+              value: https://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql/
             - name: KOGITO_JOBS_SERVICE_URL
-              value: http://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/JobsManagement
+              value: https://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/JobsManagement
             - name: KOGITO_SERVICE_URL
-              value: http://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/ProcessInstances
+              value: https://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/ProcessInstances
             - name: QUARKUS_DATASOURCE_JDBC_URL
               value: jdbc:postgresql://postgresql.bamoe-app.svc.cluster.local:5432/bamoe
             - name: QUARKUS_DATASOURCE_REACTIVE_URL
@@ -48,6 +48,8 @@ spec:
               value: /.*/
           image: docker.io/ldesrosi/kogito-travel-agency:latest
           name: process-example-app
+          command: ["/bin/sh"]
+          args: ["-c", "cd /deployments; java -jar /deployments/quarkus-run.jar"]
           ports:
             - containerPort: 8080
               protocol: TCP

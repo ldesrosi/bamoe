@@ -7,7 +7,9 @@ metadata:
     app.kubernetes.io/component: data-index
     app.kubernetes.io/instance: data-index
     app.kubernetes.io/name: data-index
+  annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/cors-allow-origin: '*'
 spec:
   ingressClassName: public-iks-k8s-nginx
   rules:

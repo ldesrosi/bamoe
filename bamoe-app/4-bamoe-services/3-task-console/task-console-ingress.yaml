@@ -7,7 +7,9 @@ metadata:
     app.kubernetes.io/component: task-console
     app.kubernetes.io/instance: task-console
     app.kubernetes.io/name: task-console
+  annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/cors-allow-origin: '*'
 spec:
   ingressClassName: public-iks-k8s-nginx
   rules:
