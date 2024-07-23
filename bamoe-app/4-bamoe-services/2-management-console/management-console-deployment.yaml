@@ -24,22 +24,22 @@ spec:
     spec:
       containers:
         - env:
-            - name: QUARKUS_HTTP_CORS_ORIGINS
-              value: /.*/
+            - name: RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_ENV_MODE
+              value: PROD
             - name: RUNTIME_TOOLS_MANAGEMENT_CONSOLE_DATA_INDEX_ENDPOINT
               value: https://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql/
-            - name: RUNTIME_TOOLS_MANAGEMENT_CONSOLE_KOGITO_ENV_MODE
-              value: DEV
+            - name: KOGITO_CONSOLES_KEYCLOAK_URL
+              value: https://keycloak.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/
+            - name: KOGITO_CONSOLES_KEYCLOAK_DISABLE_HEALTH_CHECK
+              value: 'true'
+            - name: KOGITO_CONSOLES_KEYCLOAK_REALM
+              value: kogito
+            - name: KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID
+              value: kogito-mgmt-service
           image: quay.io/bamoe/management-console:9.1.0-ibm-0001
           name: bamoe-poc-management-console
           ports:
             - containerPort: 8080
               protocol: TCP
-          volumeMounts:
-            - mountPath: /home/kogito/data/svg
-              name: management-console-claim0
       restartPolicy: Always
-      volumes:
-        - name: management-console-claim0
-          persistentVolumeClaim:
-            claimName: management-console-claim0
+

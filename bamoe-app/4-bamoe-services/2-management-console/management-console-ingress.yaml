@@ -10,6 +10,9 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/cors-allow-origin: '*'
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
 spec:
   ingressClassName: public-iks-k8s-nginx
   rules:

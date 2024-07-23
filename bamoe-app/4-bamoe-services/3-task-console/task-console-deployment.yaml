@@ -22,10 +22,18 @@ spec:
     spec:
       containers:
         - env:
-            - name: QUARKUS_HTTP_CORS_ORIGINS
-              value: /.*/
+            - name: RUNTIME_TOOLS_TASK_CONSOLE_KOGITO_ENV_MODE
+              value: PROD
             - name: RUNTIME_TOOLS_TASK_CONSOLE_DATA_INDEX_ENDPOINT
               value: https://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql/
+            - name: KOGITO_CONSOLES_KEYCLOAK_URL
+              value: https://keycloak.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/
+            - name: KOGITO_CONSOLES_KEYCLOAK_DISABLE_HEALTH_CHECK
+              value: 'true'
+            - name: KOGITO_CONSOLES_KEYCLOAK_REALM
+              value: kogito
+            - name: KOGITO_CONSOLES_KEYCLOAK_CLIENT_ID
+              value: kogito-task-service
           image: quay.io/bamoe/task-console:9.1.0-ibm-0001
           name: bamoe-poc-task-console
           ports:

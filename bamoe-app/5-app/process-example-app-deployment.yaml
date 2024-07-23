@@ -8,8 +8,6 @@ metadata:
     io.kompose.service: process-example-app
   name: process-example-app
 spec:
-  securityContext:
-    fsGroup: 0
   replicas: 1
   selector:
     matchLabels:
@@ -26,26 +24,22 @@ spec:
     spec:
       containers:
         - env:
-            - name: KAFKA_BOOTSTRAP_SERVERS
-              value: kafka.bamoe-app.svc.cluster.local:9092
-            - name: KOGITO_DATAINDEX_HTTP_URL
-              value: https://data-index.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/graphql/
-            - name: KOGITO_JOBS_SERVICE_URL
-              value: https://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/JobsManagement
-            - name: KOGITO_SERVICE_URL
-              value: https://mgmt-console.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/ProcessInstances
-            - name: QUARKUS_DATASOURCE_JDBC_URL
-              value: jdbc:postgresql://postgresql.bamoe-app.svc.cluster.local:5432/bamoe
-            - name: QUARKUS_DATASOURCE_REACTIVE_URL
-              value: jdbc:postgresql://postgresql.bamoe-app.svc.cluster.local:5432/bamoe
-            - name: QUARKUS_DATASOURCE_USERNAME
-              value: bamoe_poc
-            - name: QUARKUS_DATASOURCE_PASSWORD
-              value: password
-            - name: QUARKUS_FLYWAY_PLACEHOLDERS_USER
-              value: bamoe_poc
             - name: QUARKUS_HTTP_CORS_ORIGINS
               value: /.*/
+            - name: QUARKUS_OIDC_ENABLED
+              value: 'true'
+            - name: QUARKUS_OIDC_AUTH_SERVER_URL
+              value: https://keycloak-admin.bamoe-canvas-3cd0ec11030dfa215f262137faf739f1-0000.eu-gb.containers.appdomain.cloud/realms/kogito
+            - name: QUARKUS_OIDC_TENANT_ID
+              value: kogito
+            - name: QUARKUS_OIDC_CLIENT_ID
+              value: kogito-travel-app
+            - name: QUARKUS_OIDC_CREDENTIALS_SECRET
+              value: secret
+            - name: QUARKUS_OIDC_APPLICATION_TYPE
+              value: web-app
+            - name: QUARKUS_OIDC_TOKEN_STATE_MANAGER_STRATEGY
+              value: id-refresh-tokens
           image: docker.io/ldesrosi/kogito-travel-agency:latest
           name: process-example-app
           command: ["/bin/sh"]
